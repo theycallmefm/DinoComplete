@@ -1,0 +1,74 @@
+experiment_name: debug
+save_root: output/vits16/incompleteinput_incompletedino
+dataset_tag: inside
+amp: false
+data_root: /fm/Projects/PatchComplete/data/shapenet
+train_list: ../../data/data_splits/shapenet_train.txt
+val_list: ../../data/data_splits/shapenet_val.txt
+val_novel_list: ../../data/data_splits/shapenet_val_novel.txt
+dino_model_name: dinov3_vits16
+batch_size: 4
+num_workers: 4
+truncation: 3.0
+resolution: 32.0
+tsdf_size: 32
+grid_size: 32
+use_gt_input: false
+use_gt_teacher: false
+gpu:
+- 0
+- 1
+- 2
+- 4
+input_ids:
+- 4
+- 5
+- 6
+- 7
+dino_dim: 384
+normalize_dino: false
+use_tudf: false
+walls_aug: false
+jitter_range: 2
+filter_input_tsdf: false
+filter_missing_to: zero
+filter_hallucinated_to: trunc
+teacher_mask_eps: 1.0e-06
+model_name: DinoDenseHybridStudentPartTokens
+normalize_out: false
+hard_mask_train: false
+mask_temperature: 0.5
+hard_mask_thresh: 0.5
+base_c: 48
+use_bn: false
+dropout: 0.0
+densify: true
+model_expects_batch_dict: true
+w_cos: 1.0
+w_mse: 0.05
+w_zero: 1.0
+w_mag: 0.01
+lr: 0.0003
+weight_decay: 0.03
+grad_clip: 0.5
+num_epochs: 200
+checkpoint_interval: 50
+wandb_enabled: true
+wandb_project: tsdf-dino
+augmentation: true
+model_args:
+  embed_dim: 192
+  hidden_c: 192
+  depth: 4
+  num_heads: 6
+  mlp_ratio: 4.0
+  qkv_bias: true
+  ffn_bias: true
+  proj_bias: true
+  qk_norm: false
+  use_reentrant: false
+  use_mask_head: true
+  use_part_classifier: false
+  num_parts: 8
+  part_dropout: 0.0
+  use_part_decoder: true

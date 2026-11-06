@@ -1,0 +1,46 @@
+batch_size: 4
+channel_num: 64
+comment: ''
+data_path: ../PatchComplete/data/shapenet/
+dataset: shapenet
+gpu:
+- 0
+- 2
+- 3
+- 4
+- 5
+master_port: '2'
+load_model: null
+loss_weights:
+  l1: 1.0
+lr: 0.0001
+model_class: DinoComplete
+model_stage: train
+num_epochs: 100
+num_workers: 4
+patch_res: 32
+output_path: output/shapenet_unknown/
+save_epoch: 3
+scannet_dataset_class: ScannetDataset
+seed: 42
+shapenet_dataset_class: ShapeNetDataset
+step: 50
+train_file: data/data_splits/shapenet_train.txt
+val_novel_file: data/data_splits/shapenet_val_novel.txt
+val_trained_file: data/data_splits/shapenet_val.txt
+truncation: 3.0
+save_log: false
+use_dino_prior: true
+dino_out_dim: 384
+freeze_dino: false
+reduce_dino: true
+dino_reduce_dim: null
+dino_input_key: input_tsdf
+dino_feat_key: dino_proj
+config: configs/shapenet_train.yaml
+activate_dino_model: true
+grid_size: 32
+dino_priors:
+- name: dino
+  ckpt_path: models/tsdf-dino/pretrained_model/
+  ckpt: best.pt

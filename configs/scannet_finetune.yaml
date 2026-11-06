@@ -1,0 +1,54 @@
+batch_size: 4
+channel_num: 64
+comment: ''
+data_path: ../PatchComplete/data/scannet/
+dataset: scannet
+gpu:
+- 0
+- 1
+- 2
+- 3
+- 5
+master_port: '3'
+loss_weights:
+  l1: 1.0
+lr: 0.0001
+model_class: DinoComplete
+model_stage: fine_tune
+load_model: pretrained_models/shapenet/train_shapenet_epoch_74.pt
+num_epochs: 2
+num_workers: 4
+patch_res: 32
+output_path: output/scannet_finetune/
+save_epoch: 50
+save_log: false
+scannet_data_path: ../PatchComplete/data/scannet/
+scannet_dataset_class: ScannetDataset
+seed: 42
+shapenet_dataset_class: ShapeNetDataset
+step: 50
+config: configs/scannet_finetune.yaml
+train_file: data/data_splits/scannet_train.txt
+val_novel_file: data/data_splits/scannet_val_novel.txt
+val_trained_file: data/data_splits/scannet_val.txt
+truncation: 3.0
+use_dino_prior: true
+dino_out_dim: 384
+freeze_dino: false
+reduce_dino: true
+dino_reduce_dim: null
+dino_input:key: input_tsdf
+dino_feat_key: dino_proj
+activate_dino_model: true
+grid_size: 32
+dino_priors:
+- name: dino
+  ckpt_path: models/tsdf-dino/pretrained_model/
+  ckpt: best.pt
+
+fine_tuned_modules:
+- _encoder_32
+- _encoder_16
+- _encoder_8
+- dino_model
+- dino_adapter_16

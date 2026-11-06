@@ -1,0 +1,26 @@
+# Dataset & IO
+data_path: "data/data_samples/shapenet"
+scannet_data_path: "../PatchComplete/data/scannet"
+dataset: shapenet   # or scannet
+test_file: data/data_splits/shapenet_sample.txt
+
+do_generation: true
+do_evaluation: false
+cleanup_test_after_eval: false
+
+# Model
+model_class: DinoComplete
+model_name: "train_shapenet_epoch_74_fp16.pt"
+model_path: "pretrained_models/shapenet/"
+
+# Training / Inference options
+batch_size: 4
+truncation: 3.0
+patch_res: 32
+num_workers: 4
+
+# Hardware
+gpu: "0"
+
+# Flags
+save_mesh: true
